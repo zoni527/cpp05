@@ -6,7 +6,7 @@
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:24:44 by jvarila           #+#    #+#             */
-/*   Updated: 2025/09/03 14:55:29 by jvarila          ###   ########.fr       */
+/*   Updated: 2025/09/08 14:14:30 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <ostream>
 #include <string>
 #include <exception>
+
+class Form;
 
 class Bureaucrat
 {
@@ -26,11 +28,13 @@ public:
 
 	Bureaucrat	&operator=( Bureaucrat const &other ) = delete;
 
-	std::string		getName( void ) const;
-	unsigned int	getGrade( void ) const;
+	std::string const	&getName( void ) const;
+	unsigned int		getGrade( void ) const;
 
-	void			incrementGrade( void );
-	void			decrementGrade( void );
+	void				incrementGrade( void );
+	void				decrementGrade( void );
+
+	void				signForm( Form &f ) const;
 
 private:
 	std::string const	_name;

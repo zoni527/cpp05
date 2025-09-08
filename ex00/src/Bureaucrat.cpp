@@ -30,7 +30,7 @@ Bureaucrat::Bureaucrat( Bureaucrat const &other )
 
 /* -------------------------------------------------------------------------- */
 
-std::string Bureaucrat:: getName( void ) const
+std::string const &Bureaucrat:: getName( void ) const
 {
 	return _name;
 }

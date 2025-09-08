@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/03 18:05:56 by jvarila           #+#    #+#             */
-/*   Updated: 2025/09/08 14:14:08 by jvarila          ###   ########.fr       */
+/*   Created: 2025/09/03 14:24:44 by jvarila           #+#    #+#             */
+/*   Updated: 2025/09/08 16:16:45 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,32 @@
 #include <string>
 #include <exception>
 
-class Bureaucrat;
+class AForm;
 
-class Form
+class Bureaucrat
 {
 public:
-	Form( void );
-	Form( Form const &other );
-	Form( std::string const &name, unsigned int gradeToSign );
-	~Form( void ) = default;
+	Bureaucrat( void );
+	Bureaucrat( Bureaucrat const &other );
+	Bureaucrat( std::string const &_name, unsigned int grade );
+	~Bureaucrat( void ) = default;
 
-	Form	&operator=( Form const &rhs ) = delete;
+	Bureaucrat	&operator=( Bureaucrat const &other ) = delete;
 
 	std::string const	&getName( void ) const;
-	unsigned int		getGradeToSign( void ) const;
-	bool				getIsSigned( void ) const;
+	unsigned int		getGrade( void ) const;
 
-	void				beSigned( Bureaucrat const &b );
+	void				incrementGrade( void );
+	void				decrementGrade( void );
+
+	void				signForm( AForm &f ) const;
+
+private:
+	std::string const	_name;
+	unsigned int		_grade;
+
+	static constexpr char const		*_default_name	= "Default Dave";
+	static constexpr unsigned int	_default_grade	= 150;
 
 	class GradeTooHighException : public std::exception
 	{
@@ -45,11 +54,6 @@ public:
 	public:
 		const char	*what( void ) const noexcept override;
 	};
-
-private:
-	std::string const	_name;
-	unsigned int const	_gradeToSign;
-	bool				_isSigned = false;
 };
 
-std::ostream	&operator<<( std::ostream &os, Form const &f );
+std::ostream	&operator<<(std::ostream &os, Bureaucrat const &b);

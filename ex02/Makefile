@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= we_still_live_in_a_bureaucracy
+NAME		:= will_the_bureaucracy_ever_end
 
 CXX			:= c++
 CXX_FLAGS	:= -Wall -Wextra -Werror -std=c++20

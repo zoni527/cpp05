@@ -26,11 +26,11 @@ public:
 
 	Bureaucrat	&operator=( Bureaucrat const &other ) = delete;
 
-	std::string		getName( void ) const;
-	unsigned int	getGrade( void ) const;
+	std::string const	&getName( void ) const;
+	unsigned int		getGrade( void ) const;
 
-	void			incrementGrade( void );
-	void			decrementGrade( void );
+	void				incrementGrade( void );
+	void				decrementGrade( void );
 
 private:
 	std::string const	_name;

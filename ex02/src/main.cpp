@@ -12,7 +12,7 @@
 
 #include <iostream>
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "ansi_colors.hpp"
 
 static std::string	n_chars( char c, size_t n );
@@ -22,30 +22,30 @@ int main( void )
 {
 	print_test_name( "Parameterized constructor" );
 	{
-		Form	test( "Test form", 150 );
+		AForm	test( "Test form", 150 );
 		std::cout << test;
 	}
 	print_test_name( "Copy constructor" );
 	{
-		Form	original( "OG", 123 );
-		Form	copy( original );
+		AForm	original( "OG", 123 );
+		AForm	copy( original );
 		std::cout << copy;
 	}
 	print_test_name( "Getters" );
 	{
-		Form	f( "Test form", 123 );
-		std::cout << "Forms's name:		" << f.getName() << "\n";
-		std::cout << "Forms's grade:		" << f.getGradeToSign() << "\n";
-		std::cout << "Forms's signed state:	" << f.getIsSigned() << "\n";
+		AForm	f( "Test form", 123 );
+		std::cout << "AForms's name:		" << f.getName() << "\n";
+		std::cout << "AForms's grade:		" << f.getGradeToSign() << "\n";
+		std::cout << "AForms's signed state:	" << f.getIsSigned() << "\n";
 		Bureaucrat	b( "God", 1 );
 		b.signForm( f );
-		std::cout << "Forms's signed state:	" << f.getIsSigned() << "\n";
+		std::cout << "AForms's signed state:	" << f.getIsSigned() << "\n";
 	}
 	print_test_name( "This form is too easy to sign" );
 	{
 		try
 		{
-			Form	f( "Too easy", 151 );
+			AForm	f( "Too easy", 151 );
 		}
 		catch (std::exception &e)
 		{
@@ -56,7 +56,7 @@ int main( void )
 	{
 		try
 		{
-			Form	f( "Impossiburu!", 0 );
+			AForm	f( "Impossiburu!", 0 );
 		}
 		catch (std::exception &e)
 		{
@@ -66,13 +66,13 @@ int main( void )
 	print_test_name( "Can't get signed" );
 	{
 		Bureaucrat	bob( "Bob", 150 );
-		Form		f( "Sign me please", 149 );
+		AForm		f( "Sign me please", 149 );
 		bob.signForm( f );
 	}
 	print_test_name( "Can get signed" );
 	{
 		Bureaucrat	bob( "Bob", 150 );
-		Form		f( "Sign me please", 149 );
+		AForm		f( "Sign me please", 149 );
 		bob.signForm( f );
 	}
 	std::cout << std::endl;

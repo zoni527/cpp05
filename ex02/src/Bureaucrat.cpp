@@ -6,12 +6,12 @@
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:31:12 by jvarila           #+#    #+#             */
-/*   Updated: 2025/09/08 14:23:54 by jvarila          ###   ########.fr       */
+/*   Updated: 2025/09/08 16:16:49 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <iostream>
 
 Bureaucrat::Bureaucrat( void )
@@ -56,7 +56,7 @@ void				Bureaucrat:: decrementGrade( void )
 		throw GradeTooHighException();
 }
 
-void				Bureaucrat:: signForm( Form &f ) const
+void				Bureaucrat:: signForm( AForm &f ) const
 {
 	try
 	{
