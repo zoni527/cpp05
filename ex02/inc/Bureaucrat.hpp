@@ -6,7 +6,7 @@
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:24:44 by jvarila           #+#    #+#             */
-/*   Updated: 2025/09/08 16:16:45 by jvarila          ###   ########.fr       */
+/*   Updated: 2025/09/09 15:50:28 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,7 @@ public:
 	void				decrementGrade( void );
 
 	void				signForm( AForm &f ) const;
-
-private:
-	std::string const	_name;
-	unsigned int		_grade;
-
-	static constexpr char const		*_default_name	= "Default Dave";
-	static constexpr unsigned int	_default_grade	= 150;
+	void				executeForm( AForm &f ) const;
 
 	class GradeTooHighException : public std::exception
 	{
@@ -54,6 +48,13 @@ private:
 	public:
 		const char	*what( void ) const noexcept override;
 	};
+
+private:
+	std::string const	_name;
+	unsigned int		_grade;
+
+	static constexpr char const		*_default_name	= "Default Dave";
+	static constexpr unsigned int	_default_grade	= 150;
 };
 
 std::ostream	&operator<<(std::ostream &os, Bureaucrat const &b);

@@ -6,7 +6,7 @@
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 16:27:29 by jvarila           #+#    #+#             */
-/*   Updated: 2025/09/08 16:27:42 by jvarila          ###   ########.fr       */
+/*   Updated: 2025/09/09 10:43:19 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 class PresidentialPardonForm : public AForm
 {
 public:
-	PresidentialPardonForm( void );
-	PresidentialPardonForm( PresidentialPardonForm const &other );
-	PresidentialPardonForm( std::string const &name, unsigned int gradeToSign );
+	PresidentialPardonForm( void ) = delete;
+	PresidentialPardonForm( PresidentialPardonForm const &other ) = delete;
+	PresidentialPardonForm( std::string const &target );
 	~PresidentialPardonForm( void ) = default;
 
 	PresidentialPardonForm	&operator=( PresidentialPardonForm const &rhs ) = delete;
 
-	virtual void	beSigned( Bureaucrat const &b ) override;
+	virtual void	execute( Bureaucrat const &executor ) const override;
 
 	static constexpr unsigned int	SIGN_GRADE = 25;
 	static constexpr unsigned int	EXEC_GRADE = 5;
