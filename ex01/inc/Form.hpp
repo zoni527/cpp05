@@ -23,13 +23,17 @@ class Form
 public:
 	Form( void );
 	Form( Form const &other );
-	Form( std::string const &name, unsigned int gradeToSign );
+	Form(	std::string const &name,
+			unsigned int gradeToSign,
+			unsigned int gradeToExec,
+			bool isSigned = false );
 	~Form( void ) = default;
 
 	Form	&operator=( Form const &rhs ) = delete;
 
 	std::string const	&getName( void ) const;
 	unsigned int		getGradeToSign( void ) const;
+	unsigned int		getGradeToExec( void ) const;
 	bool				getIsSigned( void ) const;
 
 	void				beSigned( Bureaucrat const &b );
@@ -49,6 +53,7 @@ public:
 private:
 	std::string const	_name;
 	unsigned int const	_gradeToSign;
+	unsigned int const	_gradeToExec;
 	bool				_isSigned = false;
 };
 

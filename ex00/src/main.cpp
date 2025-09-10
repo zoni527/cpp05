@@ -41,7 +41,7 @@ int main( void )
 		{
 			Bureaucrat	bob( "Bob", 151 );
 		}
-		catch (std::exception &e)
+		catch ( std::exception &e )
 		{
 			std::cout << e.what() << std::endl;
 		}
@@ -52,7 +52,7 @@ int main( void )
 		{
 			Bureaucrat	bob( "Bob", 0 );
 		}
-		catch (std::exception &e)
+		catch ( std::exception &e )
 		{
 			std::cout << e.what() << std::endl;
 		}
@@ -69,7 +69,7 @@ int main( void )
 			bob.incrementGrade();
 			std::cout << bob;
 		}
-		catch (std::exception &e)
+		catch ( std::exception &e )
 		{
 			std::cout << e.what() << std::endl;
 		}
@@ -86,7 +86,7 @@ int main( void )
 			bob.decrementGrade();
 			std::cout << bob;
 		}
-		catch (std::exception &e)
+		catch ( std::exception &e )
 		{
 			std::cout << e.what() << std::endl;
 		}

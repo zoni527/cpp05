@@ -14,19 +14,26 @@
 #include "Bureaucrat.hpp"
 
 Form:: Form( void )
-	: _name( "Generic form"), _gradeToSign( 150 ) {}
+	: _name( "Generic form"), _gradeToSign( 150 ), _gradeToExec( 150 ) {}
 
 Form:: Form( Form const &other )
 	:	_name( other._name ),
 		_gradeToSign( other._gradeToSign ),
+		_gradeToExec( other._gradeToExec ),
 		_isSigned( other._isSigned ) {}
 
-Form:: Form( std::string const &name, unsigned int gradeToSign )
-	: _name( name ), _gradeToSign( gradeToSign )
+Form:: Form(	std::string const &name,
+				unsigned int gradeToSign,
+				unsigned int gradeToExec,
+				bool isSigned )
+	:	_name( name ),
+		_gradeToSign( gradeToSign ),
+		_gradeToExec ( gradeToExec ),
+		_isSigned( isSigned )
 {
-	if ( _gradeToSign > 150 )
+	if ( _gradeToSign > 150 || _gradeToExec > 150 )
 		throw GradeTooLowException();
-	else if ( _gradeToSign < 1 )
+	else if ( _gradeToSign < 1 || _gradeToExec < 1 )
 		throw GradeTooHighException();
 }
 
@@ -40,6 +47,11 @@ std::string const	&Form:: getName( void ) const
 unsigned int		Form:: getGradeToSign( void ) const
 {
 	return _gradeToSign;
+}
+
+unsigned int		Form:: getGradeToExec( void ) const
+{
+	return _gradeToExec;
 }
 
 bool				Form:: getIsSigned( void ) const
@@ -59,6 +71,7 @@ void				Form:: beSigned( Bureaucrat const &b )
 std::ostream	&operator<<( std::ostream &os, Form const &f )
 {
 	os	<< f.getName() << ", grade required to sign: " << f.getGradeToSign()
+		<< ", grade required to execute: " << f.getGradeToExec()
 		<< "." << std::endl;
 	return os;
 }
@@ -67,10 +80,10 @@ std::ostream	&operator<<( std::ostream &os, Form const &f )
 
 const char	*Form::GradeTooLowException::what( void ) const noexcept
 {
-	return "Forms's grade is too low";
+	return "Form's grade is too low";
 }
 
 const char	*Form::GradeTooHighException::what( void ) const noexcept
 {
-	return "Forms's grade is too high";
+	return "Form's grade is too high";
 }

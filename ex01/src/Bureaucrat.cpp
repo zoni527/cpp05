@@ -12,13 +12,14 @@
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "ansi_colors.hpp"
 #include <iostream>
 
 Bureaucrat::Bureaucrat( void )
-	: _name( Bureaucrat::_default_name ),
-	_grade( Bureaucrat::_default_grade ) {}
+	: _name( Bureaucrat::DEFAULT_NAME ),
+	_grade( Bureaucrat::DEFAULT_GRADE ) {}
 
-Bureaucrat::Bureaucrat(std::string const &name, unsigned int grade)
+Bureaucrat::Bureaucrat( std::string const &name, unsigned int grade )
 	: _name( name ), _grade( grade )
 {
 	if ( _grade > 150 )
@@ -44,16 +45,16 @@ unsigned int		Bureaucrat:: getGrade( void ) const
 
 void				Bureaucrat:: incrementGrade( void )
 {
-	--_grade;
-	if ( _grade < 1 )
+	if ( _grade == 1 )
 		throw GradeTooHighException();
+	--_grade;
 }
 
 void				Bureaucrat:: decrementGrade( void )
 {
+	if ( _grade == 150 )
+		throw GradeTooLowException();
 	++_grade;
-	if ( _grade > 150 )
-		throw GradeTooHighException();
 }
 
 void				Bureaucrat:: signForm( Form &f ) const
@@ -61,15 +62,17 @@ void				Bureaucrat:: signForm( Form &f ) const
 	try
 	{
 		f.beSigned( *this );
-		std::cout << _name << " signed " << f.getName() << std::endl;
+		std::cout	<< C_B_G "[X] " << C_RST << _name << " signed "
+					<< f.getName() << " form" << std::endl;
 	}
 	catch( std::exception &e )
 	{
 		std::cout
-			<< _name << " couldn't sign " << f.getName()
-			<< " because " << _name << "'s grade is " << getGrade()
-			<< " and the grade required to sign " << f.getName()
-			<< " is " << f.getGradeToSign() << "." << std::endl;
+			<< C_B_R "[ ] " << C_RST << _name << " couldn't sign "
+			<< f.getName() << " form because: "
+			<< C_HI_R << _name << "'s grade is " << getGrade()
+			<< ", the grade required to sign " << f.getName()
+			<< " form is " << f.getGradeToSign() << "." << C_RST << std::endl;
 	}
 }
 

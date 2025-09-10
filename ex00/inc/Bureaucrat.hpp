@@ -36,8 +36,8 @@ private:
 	std::string const	_name;
 	unsigned int		_grade;
 
-	static constexpr char const		*_defaultName	= "Default Dave";
-	static constexpr unsigned int	_defaultGrade	= 150;
+	static constexpr char const		*DEFAULT_NAME	= "Default Dave";
+	static constexpr unsigned int	DEFAULT_GRADE	= 150;
 
 	class GradeTooHighException : public std::exception
 	{
@@ -52,4 +52,4 @@ private:
 	};
 };
 
-std::ostream	&operator<<(std::ostream &os, Bureaucrat const &b);
+std::ostream	&operator<<( std::ostream &os, Bureaucrat const &b );

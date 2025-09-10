@@ -21,10 +21,6 @@
 static std::string	n_chars( char c, size_t n );
 static void			print_test_name( std::string str );
 
-using ShrubForm	= ShrubberyCreationForm;
-using RoboForm	= RobotomyRequestForm;
-using PrezForm	= PresidentialPardonForm;
-
 int main( void )
 {
 	print_test_name( "Let's make a shrubbery" );
@@ -38,13 +34,13 @@ int main( void )
 		bob.executeForm( shrubForm );
 		std::cout << "\n";
 
-		Bureaucrat	mat( "Mat", ShrubForm::SIGN_GRADE );
+		Bureaucrat	mat( "Mat", shrubForm.getGradeToSign() );
 		std::cout << mat;
 		mat.signForm( shrubForm );
 		mat.executeForm( shrubForm );
 		std::cout << "\n";
 
-		Bureaucrat	god( "God", ShrubForm::EXEC_GRADE );
+		Bureaucrat	god( "God", shrubForm.getGradeToExec() );
 		std::cout << god;
 		god.signForm( shrubForm );
 		god.executeForm( shrubForm );
@@ -61,13 +57,13 @@ int main( void )
 		bob.executeForm( roboForm );
 		std::cout << "\n";
 
-		Bureaucrat	mat( "Mat", RoboForm::SIGN_GRADE );
+		Bureaucrat	mat( "Mat", roboForm.getGradeToSign() );
 		std::cout << mat;
 		mat.signForm( roboForm );
 		mat.executeForm( roboForm );
 		std::cout << "\n";
 
-		Bureaucrat	god( "God", RoboForm::EXEC_GRADE );
+		Bureaucrat	god( "God", roboForm.getGradeToExec() );
 		std::cout << god;
 		god.signForm( roboForm );
 		god.executeForm( roboForm );
@@ -83,13 +79,13 @@ int main( void )
 		bob.executeForm( prezForm );
 		std::cout << "\n";
 
-		Bureaucrat	mat( "Mat", PrezForm::SIGN_GRADE );
+		Bureaucrat	mat( "Mat", prezForm.getGradeToSign() );
 		std::cout << mat;
 		mat.signForm( prezForm );
 		mat.executeForm( prezForm );
 		std::cout << "\n";
 
-		Bureaucrat	god( "God", PrezForm::EXEC_GRADE );
+		Bureaucrat	god( "God", prezForm.getGradeToExec() );
 		std::cout << god;
 		god.signForm( prezForm );
 		god.executeForm( prezForm );
@@ -100,7 +96,8 @@ int main( void )
 
 /* -------------------------------------------------------------------------- */
 
-static void print_test_name( std::string str ) {
+static void print_test_name( std::string str )
+{
 
 	for ( char &c : str )
 		c = std::toupper( c );
@@ -114,7 +111,8 @@ static void print_test_name( std::string str ) {
 	std::cout << std::endl;
 }
 
-static std::string n_chars( char c, size_t n ) {
+static std::string n_chars( char c, size_t n )
+{
 	std::string str = "";
 	while ( n-- )
 		str += c;
