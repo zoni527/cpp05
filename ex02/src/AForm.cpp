@@ -13,12 +13,6 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-AForm:: AForm( void )
-	:	_name( "Generic form"),
-		_target( "Unknown target" ),
-		_gradeToSign( 150 ),
-		_gradeToExec( 150 ) {}
-
 AForm:: AForm( AForm const &other )
 	:	_name( other._name ),
 		_target( other._target ),
@@ -70,6 +64,8 @@ bool				AForm:: getIsSigned( void ) const
 
 void				AForm:: beSigned( Bureaucrat const &signer )
 {
+	if ( _isSigned )
+		throw FormAlreadySignedException();
 	if ( signer.getGrade() > _gradeToSign )
 		throw Bureaucrat::GradeTooLowException();
 	_isSigned = true;
@@ -79,8 +75,8 @@ void				AForm:: beSigned( Bureaucrat const &signer )
 
 std::ostream	&operator<<( std::ostream &os, AForm const &f )
 {
-	os	<< "Name:				" << f.getName() << "\n"
-		<< "Target:				" << f.getTarget() << "\n"
+	os	<< "Name:			" << f.getName() << "\n"
+		<< "Target:			" << f.getTarget() << "\n"
 		<< "Grade to sign:		" << f.getGradeToSign() << "\n"
 		<< "Grade to execute:	" << f.getGradeToExec() << std::endl;
 	return os;
@@ -101,4 +97,9 @@ const char	*AForm::GradeTooHighException::what( void ) const noexcept
 const char	*AForm::FormNotSignedException::what( void ) const noexcept
 {
 	return "Form is not signed";
+}
+
+const char	*AForm::FormAlreadySignedException::what( void ) const noexcept
+{
+	return "Form is already signed";
 }

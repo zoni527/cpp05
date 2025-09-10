@@ -28,11 +28,9 @@ void	RoboForm:: execute( Bureaucrat const &executor ) const
 	if ( !getIsSigned() )
 		throw FormNotSignedException();
 	if ( executor.getGrade() > getGradeToExec() )
-		throw GradeTooLowException();
-	std::cout << "*DRRRRRNGGG PSHHH CLANG CLANG BZZZ WWHOOOOWWWZ*\n";
-	std::srand( std::time( 0 ) );
-	int random = std::rand();
-	if ( random % 2 == 0 )
+		throw Bureaucrat::GradeTooLowException();
+	std::cout << "* DRRRRRNGGG PSHHH CLANG CLANG BZZZ WWHOOOOWWWZ *\n";
+	if ( std::rand() % 2 == 0 )
 	{
 		std::cout	<< getTarget()
 					<< " has been succesfully Robotomized." << std::endl;

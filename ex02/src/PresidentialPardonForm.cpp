@@ -17,7 +17,7 @@
 using PrezForm = PresidentialPardonForm;
 
 PrezForm:: PresidentialPardonForm( std::string const &target )
-	: AForm(	"Robotomy request form",
+	: AForm(	"Presidential pardon form",
 				target,
 				PrezForm::SIGN_GRADE,
 				PrezForm::EXEC_GRADE ) {}
@@ -27,6 +27,6 @@ void	PrezForm:: execute( Bureaucrat const &executor ) const
 	if ( !getIsSigned() )
 		throw FormNotSignedException();
 	if ( executor.getGrade() > getGradeToExec() )
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

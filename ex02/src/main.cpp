@@ -16,18 +16,83 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "ansi_colors.hpp"
+#include "chrono"
 
 static std::string	n_chars( char c, size_t n );
 static void			print_test_name( std::string str );
+
+using ShrubForm	= ShrubberyCreationForm;
+using RoboForm	= RobotomyRequestForm;
+using PrezForm	= PresidentialPardonForm;
 
 int main( void )
 {
 	print_test_name( "Let's make a shrubbery" );
 	{
-		ShrubberyCreationForm	shrubForm( "Hive" );
-		Bureaucrat				bob;
+		ShrubForm	shrubForm( "Hive" );
+		std::cout << shrubForm << "\n";
+
+		Bureaucrat	bob( "Bob", 150 );
+		std::cout << bob;
 		bob.signForm( shrubForm );
 		bob.executeForm( shrubForm );
+		std::cout << "\n";
+
+		Bureaucrat	mat( "Mat", ShrubForm::SIGN_GRADE );
+		std::cout << mat;
+		mat.signForm( shrubForm );
+		mat.executeForm( shrubForm );
+		std::cout << "\n";
+
+		Bureaucrat	god( "God", ShrubForm::EXEC_GRADE );
+		std::cout << god;
+		god.signForm( shrubForm );
+		god.executeForm( shrubForm );
+	}
+	std::srand( std::time( nullptr ) );
+	print_test_name( "Let's make a robot" );
+	{
+		RoboForm	roboForm( "Roni" );
+		std::cout << roboForm << "\n";
+
+		Bureaucrat	bob( "Bob", 150 );
+		std::cout << bob;
+		bob.signForm( roboForm );
+		bob.executeForm( roboForm );
+		std::cout << "\n";
+
+		Bureaucrat	mat( "Mat", RoboForm::SIGN_GRADE );
+		std::cout << mat;
+		mat.signForm( roboForm );
+		mat.executeForm( roboForm );
+		std::cout << "\n";
+
+		Bureaucrat	god( "God", RoboForm::EXEC_GRADE );
+		std::cout << god;
+		god.signForm( roboForm );
+		god.executeForm( roboForm );
+	}
+	print_test_name( "Let's pardon somebody" );
+	{
+		PrezForm	prezForm( "The Zodiac Killer" );
+		std::cout << prezForm << "\n";
+
+		Bureaucrat	bob( "Bob", 150 );
+		std::cout << bob;
+		bob.signForm( prezForm );
+		bob.executeForm( prezForm );
+		std::cout << "\n";
+
+		Bureaucrat	mat( "Mat", PrezForm::SIGN_GRADE );
+		std::cout << mat;
+		mat.signForm( prezForm );
+		mat.executeForm( prezForm );
+		std::cout << "\n";
+
+		Bureaucrat	god( "God", PrezForm::EXEC_GRADE );
+		std::cout << god;
+		god.signForm( prezForm );
+		god.executeForm( prezForm );
 	}
 	std::cout << std::endl;
 	return 0;

@@ -12,6 +12,7 @@
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "ansi_colors.hpp"
 #include <iostream>
 
 Bureaucrat::Bureaucrat( void )
@@ -61,11 +62,14 @@ void				Bureaucrat:: signForm( AForm &f ) const
 	try
 	{
 		f.beSigned( *this );
-		std::cout << _name << " signed " << f.getName() << std::endl;
+		std::cout	<< C_B_G "[X] " << C_RST << _name << " signed "
+					<< f.getName() << std::endl;
 	}
 	catch( std::exception &e )
 	{
-		std::cout << e.what() << std::endl;
+		std::cout	<< C_B_R "[ ] " << C_RST << _name << " couldn't sign "
+					<< f.getName() << " because: "
+					<< C_HI_R << e.what() << C_RST << std::endl;
 	}
 }
 
@@ -74,11 +78,14 @@ void				Bureaucrat:: executeForm( AForm &f ) const
 	try
 	{
 		f.execute( *this );
-		std::cout << _name << " executed " << f.getName() << std::endl;
+		std::cout	<< C_B_G "[X] " << C_RST << _name << " executed "
+					<< f.getName() << std::endl;
 	}
 	catch( std::exception &e )
 	{
-		std::cout << e.what() << std::endl;
+		std::cout	<< C_B_R "[ ] " << C_RST << _name << " couldn't execute "
+					<< f.getName() << " because: "
+					<< C_HI_R << e.what() << C_RST << std::endl;
 	}
 }
 

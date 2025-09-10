@@ -45,12 +45,9 @@ void	ShrubberyCreationForm:: execute( Bureaucrat const &executor ) const
 	if ( !getIsSigned() )
 		throw FormNotSignedException();
 	if ( executor.getGrade() > getGradeToExec() )
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	std::ofstream	output( getTarget() + "_shrubbery" );
 	if ( !output )
-	{
-		std::cerr << "ERROR: couldn't open file for writing\n";
-		return;
-	}
+		throw std::runtime_error( "ERROR: Couldn't open file for shrubbery writing" );
 	output << SHRUB;
 }

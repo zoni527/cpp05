@@ -21,7 +21,7 @@ class Bureaucrat;
 class AForm
 {
 public:
-	AForm( void );
+	AForm( void ) = delete;
 	AForm( AForm const &other );
 	AForm(	std::string const &name,
 			std::string const &target,
@@ -53,6 +53,11 @@ public:
 	};
 
 	class FormNotSignedException : public std::exception
+	{
+	public:
+		const char	*what( void ) const noexcept override;
+	};
+	class FormAlreadySignedException : public std::exception
 	{
 	public:
 		const char	*what( void ) const noexcept override;
