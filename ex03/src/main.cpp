@@ -29,6 +29,7 @@ int main( void )
 		try
 		{
 			auto	form = intern.makeForm( "shrubbery creation", "Company garden" );
+			std::cout << "\n";
 			std::cout << *form;
 			delete form;
 		}
@@ -39,6 +40,7 @@ int main( void )
 		try
 		{
 			auto	form = intern.makeForm( "robotomy request", "Frodo Baggins" );
+			std::cout << "\n";
 			std::cout << *form;
 			delete form;
 		}
@@ -49,6 +51,7 @@ int main( void )
 		try
 		{
 			auto	form = intern.makeForm( "presidential pardon", "Gollum" );
+			std::cout << "\n";
 			std::cout << *form;
 			delete form;
 		}
@@ -59,6 +62,7 @@ int main( void )
 		try
 		{
 			auto	form = intern.makeForm( "Zebra tooth acne removal", "Zappa" );
+			std::cout << "\n";
 			std::cout << *form;
 			delete form;
 		}
