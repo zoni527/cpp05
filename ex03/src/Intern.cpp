@@ -14,32 +14,32 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
-#include <map>
 #include <iostream>
 
 enum FormType : int
 {
-	UNKNOWN = 0,
 	SHRUB,
 	ROBO,
 	PREZ,
+	UNKNOWN,
 };
 
-const std::map<std::string, FormType>	forms =
+constexpr char const * const	formNames[] =
 {
-	{ "shrubbery creation", SHRUB },
-	{ "robotomy request", ROBO },
-	{ "presidential pardon", PREZ },
+	"shrubbery creation", "robotomy request", "presidential pardon"
 };
 
 AForm	*Intern:: makeForm( std::string const &formName, std::string const &target ) const
 {
 	FormType	type = UNKNOWN;
-	auto		typePtr = forms.find( formName );
-	if ( typePtr != forms.end() )
+	for ( size_t i = 0; i < sizeof( formNames ) / sizeof( formNames[0] ); ++i )
 	{
-		type = typePtr->second;
-		std::cout << "(unpaid) intern creates " << formName << " form" << std::endl;
+		if ( formNames[i] == formName )
+		{
+			type = static_cast<FormType>(i);
+			std::cout << "(unpaid) intern creates " << formName << " form" << std::endl;
+			break;
+		}
 	}
 	switch( type )
 	{

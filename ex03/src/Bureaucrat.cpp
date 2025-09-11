@@ -76,7 +76,7 @@ void				Bureaucrat:: signForm( AForm &f ) const
 	}
 }
 
-void				Bureaucrat:: executeForm( AForm &f ) const
+void				Bureaucrat:: executeForm( AForm const &f ) const
 {
 	try
 	{
